@@ -12,6 +12,9 @@ const port = process.env.PORT || 2000;
 //Instanciando Express
 const app = express();
 
+//SECRETKEY
+const SECRET_KEY = process.env.SECRET_KEY;
+
 //Middlewares
 app.use(cors());
 app.use(morgan("combined"));
