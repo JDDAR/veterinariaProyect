@@ -75,7 +75,10 @@ exports.login = async (req, res) => {
 
   try {
     //Verificando si el usuario existe
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: { model: Rol, as: "role" },
+    });
     if (!user) {
       return res.status(404).json({ message: "usuario no encontrado " });
     }
@@ -88,14 +91,18 @@ exports.login = async (req, res) => {
 
     //Generando el Token
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      { id: user.id, email: user.email, role: user.role.nameRol },
       process.env.SECRET_KEY,
       { expiresIn: "1h" },
     );
 
     return res
       .status(200)
-      .json({ message: "Inicio de sesoón exitoso ", token });
+      .json({
+        message: "Inicio de sesoón exitoso ",
+        token,
+        role: user.role.nameRol,
+      });
   } catch (error) {
     console.log("Error en login: ", error);
     res.status(500).json({ message: "Error del servidor" });

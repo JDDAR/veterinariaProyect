@@ -33,7 +33,7 @@ const User = sequelize.define("User", {
   estadoUser: { type: DataTypes.STRING(20), allowNull: false },
 });
 
-User.belongsTo(Rol, { foreignKey: "idRolFk" });
+User.belongsTo(Rol, { foreignKey: "idRolFk", as: "role" });
 User.belongsTo(Especialidades, { foreignKey: "idEspeFk", allowNull: true });
 
 module.exports = User;
