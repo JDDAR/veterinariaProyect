@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import React from "react";
+import axiosInstance from "../../api/axioInstance";
 import { signinScheme } from "../../schemes/signinScheme";
 
 const initialValues = {
@@ -9,7 +10,13 @@ const initialValues = {
 
 const Signin = () => {
   const onSubmit = async (values) => {
-    console.log("ingresando datos....", values);
+    try {
+      const response = await axiosInstance.post("/api/signin", values);
+      console.log("Inicio de sesion exitoso", response.data);
+      alert(response.data.message);
+    } catch (error) {
+      console.error("Error al iniciar session: ", error);
+    }
   };
 
   return (
