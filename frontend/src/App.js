@@ -4,6 +4,7 @@ import VeterinarioProfile from "./components/profiles/VeterinarioProfile";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import FormUpdatePassword from "./components/login/FormUpdatePassword";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/updatePassword" element={<FormUpdatePassword />} />
           {/* Fin de rutas para login */}
         </Routes>
       </BrowserRouter>

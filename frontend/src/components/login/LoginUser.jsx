@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Formik, Form } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axioInstance";
@@ -14,15 +14,31 @@ const initialValues = {
 const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [updatePasswordRequired, setUpdatePasswordRequired] = useState(false);
 
   const onSubmit = async (values) => {
     try {
       const response = await axiosInstance.post("/api/signin", values);
-      const { token, role, user } = response.data;
+      const {
+        token,
+        role,
+        user,
+        updatePasswordRequired: updateRequired,
+      } = response.data;
       console.log(role);
+
+      if (updateRequired) {
+        setUpdatePasswordRequired(true);
+        console.log("Se requiere actualización de contraseña");
+        return; // Detener el flujo aquí
+      }
 
       dispatch(loginSuccess({ token, role, user }));
 
+      console.log(
+        "Token guardado en localStorage:",
+        localStorage.getItem("token"),
+      );
       switch (role) {
         case "administrador":
           navigate("/adminProfile");
@@ -39,9 +55,21 @@ const Signin = () => {
     }
   };
 
+  const formUpdatePassword = () => {
+    navigate("/updatePassword");
+  };
+
   return (
     <>
       <div className="container">
+        {updatePasswordRequired && (
+          <div className="alert alert-warning">
+            <p>Debes cambiar tu contraseña antes de continuar.</p>
+            <button onClick={formUpdatePassword} className="btn btn-primary">
+              Cambiar contraseña
+            </button>
+          </div>
+        )}
         <Formik
           initialValues={initialValues}
           validationSchema={signinScheme}

@@ -17,3 +17,21 @@ exports.verifyToken = (req, res, next) => {
     res.status(401).json({ message: "Token no valido o expirado" });
   }
 };
+
+//Verificacion de roles - permisos
+exports.verifyPermisos = (rolesPermitidos) => {
+  return (req, res, next) => {
+    const { role } = req.user;
+
+    if (!role) {
+      return res.status(401).json({ message: "Rol no definido" });
+    }
+
+    if (!rolesPermitidos.includes(role)) {
+      return res.status(403).json({
+        message: "No tienes permisos para realizar la acción",
+      });
+    }
+    next();
+  };
+};

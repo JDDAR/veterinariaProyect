@@ -3,7 +3,7 @@ const { sequelize } = require("../config/database");
 const User = require("./userModel");
 const Race = require("./raceModel");
 
-const Mascota = sequelize.define("Mascota", {
+const Pet = sequelize.define("Mascota", {
   idPet: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -11,7 +11,7 @@ const Mascota = sequelize.define("Mascota", {
   },
   namePet: {
     type: DataTypes.STRING(20),
-    allowNull: flase,
+    allowNull: false,
   },
   fechaNacimientoPet: {
     type: DataTypes.DATE,
@@ -22,7 +22,7 @@ const Mascota = sequelize.define("Mascota", {
   },
 });
 
-Mascota.belongsTo(User, { foreignKey: "idUserFk" });
-Mascota.belongsTo(Race, { foreignKey: "idEspeFk" });
+Pet.belongsTo(User, { foreignKey: "idUserFk" });
+Pet.belongsTo(Race, { foreignKey: "idEspeFk" });
 
-module.exports = Mascota;
+module.exports = Pet;
