@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+const Rol = require("../models/rolModel");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -15,22 +16,55 @@ exports.getUsers = async (req, res) => {
 /* ********************* ENDPOINT PARA REGISTRAR USUARIO  ******/
 
 exports.register = async (req, res) => {
-  const { name, email, password, role } = req.body;
-
+  const {
+    tipoDocumento,
+    numberDocumento,
+    nameUser,
+    lastNameUser,
+    addressUser,
+    telUser,
+    estadoUser,
+    email,
+    password,
+    roleId,
+    specialtyId,
+  } = req.body;
   try {
+    // Verificar que el rol exista
+    const role = await Rol.findByPk(roleId);
+    if (!role) {
+      return res.status(404).json({ message: "El rol especificado no existe" });
+    }
+
+    // Verificar que la especialidad exista (si es requerida)
+    if (specialtyId) {
+      const specialty = await Especialidades.findByPk(specialtyId);
+      if (!specialty) {
+        return res
+          .status(404)
+          .json({ message: "La especialidad especificada no existe" });
+      }
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
-      name,
+      tipoDocumento,
+      numberDocumento,
+      nameUser,
+      lastNameUser,
+      addressUser,
+      telUser,
+      estadoUser,
       email,
       password: hashedPassword,
-      role,
+      idRolFk: roleId,
+      idEspeFk: specialtyId,
     });
     res
       .status(201)
-      .json({ message: "Usuario Registrado exitosamente", newUser });
+      .json({ message: "Usuario registrado exitosamente", newUser });
   } catch (error) {
-    console.log("Error en el registro : ", error);
-    res.status(500).json({ message: "error del servidor..." });
+    console.log("Error en el registro: ", error);
+    res.status(500).json({ message: "Error del servidor" });
   }
 };
 
