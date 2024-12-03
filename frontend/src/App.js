@@ -1,21 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminProfile from "./components/profiles/AdminProfile";
-import VeterinarioProfile from "./components/profiles/VeterinarioProfile";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import FormUpdatePassword from "./components/login/FormUpdatePassword";
+import Modal from "./components/modals/Modal";
+import VeterinarioProfile from "./pages/Profiles/veterinarioProfile";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Modal />
         <Routes>
           <Route path="/" element={<Home />} />
           {/*Rutas para el login *******/}
           <Route path="/login" element={<Login />} />
           <Route
-            path="/adminProfile"
+            path="/adminProfile/*"
             element={
               <ProtectedRoute roleRequired="administrador">
                 <AdminProfile />
@@ -23,7 +25,7 @@ function App() {
             }
           />
           <Route
-            path="/veterinarioProfile"
+            path="/veterinarioProfile/*"
             roleRequired="veterinario"
             element={
               <ProtectedRoute roleRequired="veterinario">

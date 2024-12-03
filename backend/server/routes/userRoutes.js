@@ -1,13 +1,16 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-const {
-  verifyToken,
-  verifyPermisos,
-} = require("../middlewares/authMiddleware");
 const rolController = require("../controllers/rolsController");
 const especialistController = require("../controllers/especialitsController");
 const raceController = require("../controllers/raceController");
 const petController = require("../controllers/petController");
+const filterController = require("../controllers/filterController");
+const agendamientoController = require("../controllers/agendamientoController");
+
+const {
+  verifyToken,
+  verifyPermisos,
+} = require("../middlewares/authMiddleware");
 
 module.exports = (app) => {
   const router = express.Router();
@@ -18,7 +21,6 @@ module.exports = (app) => {
   app.route("/api/createRol").post(rolController.createRol);
 
   //Actualizar contraseña
-
   app
     .route("/api/updatePassword")
     .put(verifyToken, userController.updatePassword);
@@ -41,13 +43,7 @@ module.exports = (app) => {
     );
 
   //Crear nueva mascota :
-  app
-    .route("/api/createPet")
-    .post(
-      verifyToken,
-      verifyPermisos(["veterinario", "administrador"]),
-      petController.createPet,
-    );
+  app.route("/api/createPet").post(petController.createPet);
 
   //Ruta para registrar usuario ********
   app.route("/api/registerUser").post(userController.register);
@@ -58,4 +54,22 @@ module.exports = (app) => {
   //Ruta para extraer los usuarios existentes bbin
   //Requiere autenticacion por eso ponemos verifyToken
   app.route("/api/users").get(verifyToken, userController.getUsers);
+
+  /************ RUTAS DE VISTA ***********************/
+  app.route("/api/filterClientes").get(filterController.getUserClientes);
+
+  //************************************************AGENDAMIENTO **//
+
+  // Crear un nuevo agendamiento
+  app
+    .route("/api/agendamientos")
+    .post(agendamientoController.createAgendamiento);
+
+  // Obtener la lista de veterinarios disponibles
+  app
+    .route("/api/veterinarios")
+    .get(agendamientoController.obtenerVeterinarios);
+
+  // Obtener todos los agendamientos
+  app.route("/api/agendamientos").get(agendamientoController.getAgendamientos);
 };
