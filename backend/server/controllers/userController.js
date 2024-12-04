@@ -112,6 +112,7 @@ exports.login = async (req, res) => {
       message: "Inicio de sesoón exitoso ",
       token,
       role: user.role.nameRol,
+      id: user.id,
     });
   } catch (error) {
     console.log("Error en login: ", error);

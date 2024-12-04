@@ -11,5 +11,14 @@ const sequelize = new Sequelize(
     logging: false, // Desactiva los logs de Sequelize
   },
 );
+// Sincronizar la base de datos con los modelos
+sequelize
+  .sync()
+  .then(() => {
+    console.log("Base de datos sincronizada");
+  })
+  .catch((error) => {
+    console.error("Error al sincronizar la base de datos:", error);
+  });
 
 module.exports = { sequelize };

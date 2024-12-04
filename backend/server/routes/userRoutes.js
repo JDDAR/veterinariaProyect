@@ -71,5 +71,15 @@ module.exports = (app) => {
     .get(agendamientoController.obtenerVeterinarios);
 
   // Obtener todos los agendamientos
-  app.route("/api/agendamientos").get(agendamientoController.getAgendamientos);
+  app
+    .route("/api/verAgendamientos")
+    .get(agendamientoController.getAgendamientos);
+
+  //Obteniendo las mascotas de los animales
+  app.route("/api/mascotas").get(petController.getPetsClient);
+
+  //Obteniendo citas associadas a veterinarios:
+  app
+    .route("/api/citas/veterinario/:id")
+    .get(agendamientoController.obtenerCitasPorVeterinario);
 };

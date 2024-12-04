@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axiosInstance from "../../../api/axioInstance";
 import { fetchClientes } from "../../../redux/slices/clienteSlice";
 import { openModal } from "../../../redux/slices/modalSlice";
 
@@ -34,13 +35,26 @@ const FilterClientes = () => {
     );
   };
 
-  const handleNewCita = (cliente) => {
-    dispatch(
-      openModal({
-        modalContent: "REGISTER_FORM",
-        modalProps: { cliente: cliente },
-      }),
-    );
+  const handleNewCita = async (cliente) => {
+    try {
+      const response = await axiosInstance.get(
+        `/api/mascotas?clienteId=${cliente}`,
+      );
+      const mascotas = response.data.mascotas;
+
+      dispatch(
+        openModal({
+          modalContent: "REGISTER_FORM",
+          modalProps: {
+            cliente: cliente,
+            mascotas: mascotas || [],
+          },
+        }),
+      );
+    } catch (error) {
+      console.log("Error al extraer las mascotas ", error);
+      alert("Nose encontraron mascotas asociadas..");
+    }
   };
 
   return (
@@ -84,9 +98,7 @@ const FilterClientes = () => {
                 <button onClick={() => handleButonPet(c.id)}>
                   Asignar Mascota
                 </button>
-                <button onClick={() => handleNewCita(c.id, c)}>
-                  Cita nueva
-                </button>
+                <button onClick={() => handleNewCita(c.id)}>Cita nueva</button>
               </div>
             </div>
           ))

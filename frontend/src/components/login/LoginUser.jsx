@@ -22,10 +22,12 @@ const Signin = () => {
       const {
         token,
         role,
+        id,
         user,
         updatePasswordRequired: updateRequired,
       } = response.data;
       console.log(role);
+      console.log(id);
 
       if (updateRequired) {
         setUpdatePasswordRequired(true);
@@ -33,7 +35,7 @@ const Signin = () => {
         return; // Detener el flujo aquí
       }
 
-      dispatch(loginSuccess({ token, role, user }));
+      dispatch(loginSuccess({ token, role, user, id }));
 
       console.log(
         "Token guardado en localStorage:",
