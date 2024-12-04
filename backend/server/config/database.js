@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST || "localhost",
     dialect: "mysql",
-    logging: false, // Desactiva los logs de Sequelize
+    logging: false,
   },
 );
 // Sincronizar la base de datos con los modelos

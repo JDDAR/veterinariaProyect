@@ -55,4 +55,49 @@ exports.getPetsClient = async (req, res) => {
   }
 };
 
-//FIN NNN Enpoit parra aobtener las mascotas asociadas a un cliete :
+//FIN NNN Enpoit parra aobtener las mascotas asociadas a un cliete
+
+/*filtrando mascotas teniendo encuenta el id del cliente ********/
+
+exports.filterPetUser = async (req, res) => {
+  const { documento } = req.query;
+
+  try {
+    console.log("Este es el numero de documento:", documento);
+    // Buscar al usuario por el número de documento
+    const user = await User.findOne({ where: { numberDocumento: documento } });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    // Obtener las mascotas asociadas al usuario
+    const mascotas = await Pet.findAll({ where: { idUserFk: user.id } });
+    res.json({ mascotas });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener las mascotas" });
+  }
+};
+
+/*Obteniendo historial de una mascota teniendo en cuenta su id : */
+
+exports.historialPet = async (req, res) => {
+  const { mascotaId } = req.query;
+
+  try {
+    // Buscar el historial de la mascota con el id especificado
+    const pet = await Pet.findByPk(mascotaId, {
+      include: [{ model: HistorialClinico, as: "historial" }],
+    });
+    if (!pet) {
+      return res.status(404).json({ message: "Mascota no encontrada" });
+    }
+
+    res.json({ historial: pet.historial });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error al obtener el historial de la mascota" });
+  }
+};

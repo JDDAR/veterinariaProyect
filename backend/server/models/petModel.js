@@ -2,8 +2,9 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/database");
 const User = require("./userModel");
 const Race = require("./raceModel");
+const HistorialClinico = require("./historialModel");
 
-const Pet = sequelize.define("Mascota", {
+const Pet = sequelize.define("Pet", {
   idPet: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -24,5 +25,6 @@ const Pet = sequelize.define("Mascota", {
 
 Pet.belongsTo(User, { foreignKey: "idUserFk" });
 Pet.belongsTo(Race, { foreignKey: "idEspeFk" });
+Pet.hasMany(HistorialClinico, { foreignKey: "idPetFk", as: "historial" });
 
 module.exports = Pet;

@@ -1,0 +1,22 @@
+@use "../variables" as v;
+
+.containerHeader {
+  width: 100%;
+  background: rgba(v.$color-Bg-secondary, 0.2);
+}
+
+.HeaderNav {
+  height: 79px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__navcontent {
+    width: auto;
+    ul {
+      gap: 25px;
+      list-style-type: none;
+      display: flex;
+    }
+  }
+}

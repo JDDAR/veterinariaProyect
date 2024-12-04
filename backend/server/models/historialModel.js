@@ -15,10 +15,6 @@ const HistorialClinico = sequelize.define("HistorialClinico", {
     allowNull: false,
     defaultValue: DataTypes.NOW, // Fecha de creación por defecto
   },
-  tituloNota: {
-    type: DataTypes.STRING(100),
-    allowNull: true,
-  },
   descripcionHistorial: {
     type: DataTypes.TEXT,
     allowNull: true,
@@ -31,6 +27,23 @@ const HistorialClinico = sequelize.define("HistorialClinico", {
   creadoPor: {
     type: DataTypes.UUID,
     allowNull: true,
+  },
+  notas: {
+    type: DataTypes.JSON, // Almacenaremos las notas como un JSON
+    allowNull: true,
+    defaultValue: [],
+  },
+  idAgendaFk: {
+    type: DataTypes.UUID,
+    allowNull: false,
+  },
+  idPetFk: {
+    type: DataTypes.UUID,
+    allowNull: false,
+  },
+  idUsuarioFk: {
+    type: DataTypes.UUID,
+    allowNull: false,
   },
 });
 

@@ -36,12 +36,13 @@ const Agenda = sequelize.define("Agenda", {
   estadoAgenda: {
     type: DataTypes.ENUM("Pendiente", "Confirmada", "Cancelada", "Activo"),
     allowNull: false,
-    defaultValue: "pendiente",
+    defaultValue: "Pendiente",
   },
 });
 
-Agenda.belongsTo(User, { foreignKey: "idUsuarioFk", as: "usuario" }); // Usuario que solicita la cita
-Agenda.belongsTo(User, { foreignKey: "idMedicoFk", as: "medico" }); // Veterinario
-Agenda.belongsTo(Pet, { foreignKey: "idPetFk", as: "mascota" }); // Mascota
+// Asegúrate de que las asociaciones se definan después de definir los modelos
+Agenda.belongsTo(User, { foreignKey: "idUsuarioFk", as: "usuario" });
+Agenda.belongsTo(User, { foreignKey: "idMedicoFk", as: "medico" });
+Agenda.belongsTo(Pet, { foreignKey: "idPetFk", as: "mascota" });
 
 module.exports = Agenda;

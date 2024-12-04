@@ -41,6 +41,15 @@ const Agenda = () => {
     }
   };
 
+  const handleIniciarCita = (cita) => {
+    dispatch(
+      openModal({
+        modalContent: "HISTORIAL_FORM",
+        modalProps: { cita },
+      }),
+    );
+  };
+
   if (loading) {
     return <p>Cargando citas...</p>;
   }
@@ -83,6 +92,9 @@ const Agenda = () => {
                     <button onClick={() => handleEditCita(cita)}>Editar</button>
                     <button onClick={() => handleCancelCita(cita.id)}>
                       Cancelar
+                    </button>
+                    <button onClick={() => handleIniciarCita(cita)}>
+                      Iniciar
                     </button>
                   </>
                 )}

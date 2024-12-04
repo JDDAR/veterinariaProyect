@@ -6,7 +6,7 @@ const raceController = require("../controllers/raceController");
 const petController = require("../controllers/petController");
 const filterController = require("../controllers/filterController");
 const agendamientoController = require("../controllers/agendamientoController");
-
+const historialController = require("../controllers/historialClinicoController");
 const {
   verifyToken,
   verifyPermisos,
@@ -82,4 +82,14 @@ module.exports = (app) => {
   app
     .route("/api/citas/veterinario/:id")
     .get(agendamientoController.obtenerCitasPorVeterinario);
+
+  //Rutas Para Guardar Historial:
+  app
+    .route("/api/historialClinico")
+    .post(historialController.saveHistorialClinico);
+
+  // Rutas para filtrar historiaal
+  app.route("/api/mascotasCliente").get(petController.filterPetUser);
+
+  app.route("/api/historial").get(petController.historialPet);
 };

@@ -37,7 +37,10 @@ server.listen(port, hostname, async () => {
   try {
     await sequelize.authenticate();
     console.log("La conexion a la base de datos fue exitosa...");
-    await sequelize.sync({ force: false });
+    awaitsequelize
+      .sync({ force: false })
+      .then(() => console.log("Tablas sincronizadas"))
+      .catch((err) => console.error("Error al sincronizar las tablas:", err));
   } catch (error) {
     console.error("ERROR al conectarse a la base de datos: ", error);
   }
