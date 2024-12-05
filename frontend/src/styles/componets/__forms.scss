@@ -1,0 +1,21 @@
+@use "../variables" as v;
+
+.containerForm {
+  width: 80%;
+  margin: auto;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  &__login,
+  &__register {
+    width: 100%;
+    height: 75vh;
+    border: 1px solid blue;
+  }
+  &__formPrimary {
+    width: 80%;
+    height: 100%;
+    border: 1px solid purple;
+    padding: 25px;
+  }
+}

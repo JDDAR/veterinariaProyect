@@ -1,0 +1,39 @@
+@use "../variables" as v;
+
+.containerHeader {
+  width: 100%;
+  background: rgba(v.$color-Bg-secondary, 0.2);
+}
+
+.HeaderNav {
+  height: 79px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__logoContainer {
+    width: 50px;
+    height: 50px;
+    img {
+      width: 100%;
+    }
+  }
+
+  &__navcontent {
+    width: auto;
+    ul {
+      gap: 25px;
+      list-style-type: none;
+      display: flex;
+    }
+  }
+  &__buttonHeader {
+    button {
+      padding: 8px;
+      border-radius: 6px;
+      background: v.$color-primary;
+      color: v.$color-Bg;
+      border: none;
+    }
+  }
+}
