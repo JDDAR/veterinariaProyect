@@ -73,12 +73,13 @@ const Signin = () => {
           </div>
         )}
         <div className="containerForm__login">
+          <h2>Iniciar Sesión</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={signinScheme}
             onSubmit={onSubmit}
           >
-            <Form className="containerForm__formPrinmary" autoComplete="on">
+            <Form className="containerForm__formPrimary" autoComplete="on">
               <fieldset>
                 <label htmlFor="email">Correo</label>
                 <Field name="email" type="email" id="email" autoFocus />
@@ -97,6 +98,7 @@ const Signin = () => {
                   className="errorInput"
                 />
               </fieldset>
+              <p>¿Olvidaste tu contraseña ?</p>
               <button type="submit">Ingresar</button>
             </Form>
           </Formik>

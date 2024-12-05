@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
     logging: false,
   },
 );
+
 // Sincronizar la base de datos con los modelos
 sequelize
   .sync()

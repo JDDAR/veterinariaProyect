@@ -3,6 +3,19 @@ $color-secondary: #d87744;
 $color-Bg: #f2f2f2;
 $color-font: #212529;
 $color-Bg-secondary: #626263;
+$color-error: #e63946;
+$background-image: linear-gradient(
+  to right,
+  #113849,
+  #3c4871,
+  #834e80,
+  #c0556c,
+  #d87744
+);
+
+$color-shadow:
+  rgba(0, 0, 0, 0.19) 0px 10px 20px,
+  rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
 .container {
   width: 90%;

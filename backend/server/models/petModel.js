@@ -1,30 +1,25 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const { sequelize } = require("../config/database");
-const User = require("./userModel");
-const Race = require("./raceModel");
-const HistorialClinico = require("./historialModel");
 
-const Pet = sequelize.define("Pet", {
-  idPet: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
-  },
-  namePet: {
-    type: DataTypes.STRING(20),
-    allowNull: false,
-  },
-  fechaNacimientoPet: {
-    type: DataTypes.DATE,
-  },
-  estadoPet: {
-    type: DataTypes.STRING(20),
-    allowNull: false,
-  },
-});
+class Pet extends Model {}
 
-Pet.belongsTo(User, { foreignKey: "idUserFk" });
-Pet.belongsTo(Race, { foreignKey: "idEspeFk" });
-Pet.hasMany(HistorialClinico, { foreignKey: "idPetFk", as: "historial" });
+Pet.init(
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
+    name: { type: DataTypes.STRING, allowNull: false },
+    type: { type: DataTypes.STRING, allowNull: false },
+    age: { type: DataTypes.INTEGER, allowNull: false },
+  },
+  {
+    sequelize,
+    modelName: "Pet",
+    tableName: "Mascota",
+    timestamps: true,
+  },
+);
 
 module.exports = Pet;

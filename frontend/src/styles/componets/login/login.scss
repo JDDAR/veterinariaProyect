@@ -1,0 +1,9 @@
+@use "../../variables" as v;
+@import "../forms/_forms";
+
+.containerForms {
+  width: 100%;
+  height: auto;
+  padding: 50px;
+  border: 1x solid red;
+}

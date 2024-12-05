@@ -1,11 +1,14 @@
 import React from "react";
+import logoHeader from "../../img/logo-dark.png";
 
 const HeaderNav = ({ nombre }) => {
   return (
     <>
       <div className="containerHeader">
         <div className="container HeaderNav">
-          <p>Logo</p>
+          <figure className="HeaderNav__logoContainer">
+            <img src={logoHeader} alt="Logo" />
+          </figure>
           <nav className="HeaderNav__navcontent">
             <ul>
               <li>Nosotros </li>

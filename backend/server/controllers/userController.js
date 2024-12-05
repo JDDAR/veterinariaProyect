@@ -83,6 +83,7 @@ exports.login = async (req, res) => {
       return res.status(404).json({ message: "usuario no encontrado " });
     }
 
+    console.log("Datos user : .. ", user);
     //Comparando contraseñas
     const passwordValid = await bcrypt.compare(password, user.password);
     if (!passwordValid) {
