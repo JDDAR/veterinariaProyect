@@ -1,0 +1,96 @@
+@use "../variables" as v;
+.footer {
+  background-color: v.$color-primary;
+  padding: 10px 0;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.content h2 {
+  text-align: left;
+  margin: 5%;
+  height: auto;
+  padding: 5px 10px;
+  color: v.$color-Bg;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.content p {
+  text-align: left;
+  margin: 0% 5%;
+  padding: 5px 10px;
+  color: v.$color-Bg;
+}
+
+.enlaces {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.enlaces li {
+  margin: 0;
+}
+
+.enlaces a {
+  text-decoration: none;
+  padding: 5px 10px;
+  margin: 5%;
+  color: v.$color-Bg;
+}
+
+.info {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.info li {
+  margin: 0;
+}
+
+.info a {
+  text-decoration: none;
+  padding: 5px 10px;
+  margin: 5%;
+  color: v.$color-Bg;
+}
+
+.ubic img {
+  width: 40px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ubic a {
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.ubic a:hover {
+  transform: scale(1.2);
+  background: v.$color-primary;
+}
+
+.ubic li {
+  float: left;
+}
+
+.text-decoration {
+  text-decoration: underline;
+}
+
+.hr-style {
+  border: solid 2px v.$color-Bg;
+}

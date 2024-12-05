@@ -37,10 +37,9 @@
 
     button {
       margin: auto;
-      width: 50%;
       padding: 15px;
       background: v.$color-secondary;
-      color: v.$color-Bg;
+      color: v.$color;
       border: none;
       border-radius: 6px;
     }
@@ -51,10 +50,11 @@
     flex-direction: column;
     position: relative;
   }
+
   input {
     padding: 15px;
     border: none;
-    background-color: rgba(v.$color-Bg-secondary, 0.2);
+    background-color: $background-color-gradient-1;
     border-radius: 6px;
   }
   .errorInput {

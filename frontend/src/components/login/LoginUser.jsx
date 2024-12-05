@@ -1,10 +1,11 @@
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axioInstance";
 import { loginSuccess } from "../../redux/slices/userSlice";
 import { signinScheme } from "../../schemes/signinScheme";
+import "../../styles/componets/login/__LoginUser.scss";
 
 const initialValues = {
   email: "",
@@ -39,7 +40,7 @@ const Signin = () => {
 
       console.log(
         "Token guardado en localStorage:",
-        localStorage.getItem("token"),
+        localStorage.getItem("token")
       );
       switch (role) {
         case "administrador":
@@ -63,47 +64,74 @@ const Signin = () => {
 
   return (
     <>
-      <div className="containerForm">
+      <div className="container" id="container">
         {updatePasswordRequired && (
           <div className="alert alert-warning">
-            <p>Debes cambiar tu contraseña antes de continuar.</p>
             <button onClick={formUpdatePassword} className="btn btn-primary">
               Cambiar contraseña
             </button>
           </div>
         )}
-        <div className="containerForm__login">
-          <h2>Iniciar Sesión</h2>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={signinScheme}
-            onSubmit={onSubmit}
-          >
-            <Form className="containerForm__formPrimary" autoComplete="on">
-              <fieldset>
-                <label htmlFor="email">Correo</label>
-                <Field name="email" type="email" id="email" autoFocus />
-                <ErrorMessage
-                  name="email"
-                  component="p"
-                  className="errorInput"
-                />
-              </fieldset>
-              <fieldset>
-                <label htmlFor="password">Contraseña</label>
-                <Field name="password" type="password" id="password" />
-                <ErrorMessage
-                  name="password"
-                  component="p"
-                  className="errorInput"
-                />
-              </fieldset>
-              <p>¿Olvidaste tu contraseña ?</p>
-              <button type="submit">Ingresar</button>
-            </Form>
-          </Formik>
+        <div className="form-container sign-in">
+          <form>
+            <h1>Inicio Sesión</h1>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={signinScheme}
+              onSubmit={onSubmit}
+            >
+              <Form className="containerForm__formPrimary" autoComplete="on">
+                <fieldset>
+                  <Field
+                    name="email"
+                    type="email"
+                    id="email"
+                    placeholder="Correo"
+                    autoFocus
+                    required
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="p"
+                    className="errorInput"
+                  />
+                </fieldset>
+                <fieldset>
+                  <Field
+                    name="password"
+                    type="password"
+                    id="password"
+                    placeholder="Contraseña"
+                    required
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="p"
+                    className="errorInput"
+                  />
+                </fieldset>
+                <NavLink to="/">¿Olvidaste tu contraseña?</NavLink>
+                <button className="btn btn-outline-light hidden2" type="submit">
+                  Inicio Sesión
+                </button>
+              </Form>
+            </Formik>
+          </form>
         </div>
-        <div className="containerForm__register"></div>
+        <div className="toggle-container">
+          <div className="toggle">
+            <div className="toggle-panel toggle-right">
+              <h1 className="letra">Hola!</h1>
+              <p>
+                Regístrese con sus datos personales para utilizar todas las
+                funciones del sitio{" "}
+              </p>
+              <NavLink className="btn btn-outline-light hidden" to="/">
+                Registrar
+              </NavLink>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

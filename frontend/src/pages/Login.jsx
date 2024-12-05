@@ -1,16 +1,14 @@
 import React from "react";
 import Signin from "../components/login/LoginUser";
 import HeaderNav from "../components/header/HeaderNav";
+import Footer from "../components/footer/Footer";
 
 const Login = () => {
   return (
     <div>
       <HeaderNav />
-      <div className="container">
-        <div className="containerForms">
-          <Signin />
-        </div>
-      </div>
+      <Signin />
+      <Footer />
     </div>
   );
 };

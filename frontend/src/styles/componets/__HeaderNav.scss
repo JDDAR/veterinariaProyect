@@ -1,39 +1,67 @@
 @use "../variables" as v;
 
-.containerHeader {
-  width: 100%;
-  background: rgba(v.$color-Bg-secondary, 0.2);
+.navbar {
+  background: v.$background-color-hearder-transparent !important;
 }
 
-.HeaderNav {
-  height: 79px;
+.menu {
+  color: v.$color-font;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
 
-  &__logoContainer {
-    width: 50px;
-    height: 50px;
-    img {
-      width: 100%;
-    }
-  }
+.site-title {
+  align-content: center;
+  font-size: 1.5em;
+  margin: 0;
+}
 
-  &__navcontent {
-    width: auto;
-    ul {
-      gap: 25px;
-      list-style-type: none;
-      display: flex;
-    }
-  }
-  &__buttonHeader {
-    button {
-      padding: 8px;
-      border-radius: 6px;
-      background: v.$color-primary;
-      color: v.$color-Bg;
-      border: none;
-    }
-  }
+.logo {
+  width: 70px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.my-span {
+  color: v.$color-font;
+  font-weight: bold;
+  align-content: center;
+  margin: 0;
+  font-size: 1.7em;
+}
+
+.toggle {
+  border: none;
+  color: v.$color-font;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item li {
+  margin: 0;
+  align-content: center;
+}
+
+.item a {
+  color: v.$color-font;
+  text-decoration: none;
+  align-content: center;
+  margin: 0;
+}
+
+.item a:hover {
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
 }
