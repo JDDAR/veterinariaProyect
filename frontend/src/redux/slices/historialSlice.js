@@ -40,7 +40,7 @@ export const fetchHistorial = (mascotaId) => async (dispatch) => {
     const response = await axiosInstance.get(
       `/api/historial?mascotaId=${mascotaId}`,
     );
-    dispatch(fetchHistorialSuccess(response.data.historial));
+    dispatch(fetchHistorialSuccess(response.data.historiales));
   } catch (error) {
     dispatch(fetchHistorialError("Error al cargar el historial"));
   }

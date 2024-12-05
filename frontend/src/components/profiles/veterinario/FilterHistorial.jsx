@@ -21,8 +21,6 @@ const FilterHistorial = () => {
     error: errorHistorial,
   } = useSelector((state) => state.historial);
 
-  console.log("este es el historial ", historial);
-
   // Actualizar la lista de mascotas al cambiar el documento
   const handleBuscarUsuario = () => {
     if (documento.trim() !== "") {
@@ -46,6 +44,23 @@ const FilterHistorial = () => {
 
   const handleMascotaChange = (e) => {
     setMascotaSeleccionada(e.target.value);
+  };
+
+  // Función para formatear la fecha
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    // Formatear la fecha (día/mes/año)
+    const formattedDate = date.toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    // Formatear la hora
+    const formattedTime = date.toLocaleTimeString("es-ES", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return { date: formattedDate, time: formattedTime };
   };
 
   return (
@@ -105,23 +120,29 @@ const FilterHistorial = () => {
         }}
       >
         {Array.isArray(historial) && historial.length > 0 ? (
-          historial.map((item) => (
-            <div
-              key={item.idHistorial}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "1rem",
-                width: "300px",
-              }}
-            >
-              <h5>Historial ID: {item.idHistorial}</h5>
-              <p>{item.descripcionHistorial}</p>
-              <p>
-                <strong>Fecha:</strong> {item.fechaHistorial}
-              </p>
-            </div>
-          ))
+          historial.map((item) => {
+            const { date, time } = formatDate(item.fechaHistorial); // Obtener fecha y hora separadas
+            return (
+              <div
+                key={item.idHistorial}
+                style={{
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  padding: "1rem",
+                  width: "300px",
+                }}
+              >
+                <h5>Historial ID: {item.idHistorial}</h5>
+                <p>{item.descripcionHistorial}</p>
+                <p>
+                  <strong>Fecha:</strong> {date} {/* Solo la fecha */}
+                </p>
+                <p>
+                  <strong>Hora:</strong> {time} {/* Solo la hora */}
+                </p>
+              </div>
+            );
+          })
         ) : (
           <p>No hay historial disponible.</p>
         )}
