@@ -27,6 +27,15 @@ app.use(express.json());
 //Cargando rutas
 require("./server/routes/userRoutes")(app);
 
+sequelize
+  .sync({ alter: true }) // Usa alter para evitar pérdida de datos
+  .then(() => {
+    console.log("Base de datos sincronizada correctamente.");
+  })
+  .catch((err) => {
+    console.error("Error al sincronizar la base de datos:", err);
+  });
+
 //Ruta generica para error 404
 app.use((req, res) => {
   res.status(404).send("<h1> 404 : Pagina no encontrada </h1>");

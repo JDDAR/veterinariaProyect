@@ -53,7 +53,7 @@ HistorialClinico.init(
     sequelize,
     modelName: "HistorialClinico",
     tableName: "HistorialClinicos",
-    timestamps: false,
+    timestamps: true,
   },
 );
 

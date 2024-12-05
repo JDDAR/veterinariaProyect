@@ -10,14 +10,31 @@ Pet.init(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    name: { type: DataTypes.STRING, allowNull: false },
-    type: { type: DataTypes.STRING, allowNull: false },
-    age: { type: DataTypes.INTEGER, allowNull: false },
+    namePet: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    fechaNacimientoPet: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    estadoPet: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    idUserFk: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    }, // Relación con la tabla User
+    idEspeFk: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    }, // Relación con especialidad
   },
   {
     sequelize,
     modelName: "Pet",
-    tableName: "Mascota",
+    tableName: "Mascota", // Nombre de la tabla en la base de datos
     timestamps: true,
   },
 );

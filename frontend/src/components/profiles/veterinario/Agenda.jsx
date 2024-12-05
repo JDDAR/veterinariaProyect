@@ -9,8 +9,7 @@ const Agenda = () => {
   const dispatch = useDispatch();
   const { citas, loading, error } = useSelector((state) => state.agenda);
   const { id, role } = useSelector((state) => state.user);
-
-  console.log("IDDDD", id);
+  const idMedico = id;
 
   // Cargar las citas según el rol del usuario
   useEffect(() => {
@@ -41,11 +40,11 @@ const Agenda = () => {
     }
   };
 
-  const handleIniciarCita = (cita) => {
+  const handleIniciarCita = (cita, idMedico) => {
     dispatch(
       openModal({
         modalContent: "HISTORIAL_FORM",
-        modalProps: { cita },
+        modalProps: { cita, idMedico },
       }),
     );
   };
@@ -64,7 +63,7 @@ const Agenda = () => {
       <div className="contentAgenda__containerCardAgenda">
         {citas.length > 0 ? (
           citas.map((cita) => (
-            <div key={cita.id} className="contentAgenda__cardsAgenda">
+            <div key={cita.idAgenda} className="contentAgenda__cardsAgenda">
               <h5>
                 Fecha: {cita.fecha} | Hora: {cita.horaInicio} - {cita.horaFin}
               </h5>
@@ -85,7 +84,7 @@ const Agenda = () => {
                     <button onClick={() => handleCancelCita(cita.id)}>
                       Cancelar
                     </button>
-                    <button onClick={() => handleIniciarCita(cita)}>
+                    <button onClick={() => handleIniciarCita(cita, idMedico)}>
                       Iniciar
                     </button>
                   </>

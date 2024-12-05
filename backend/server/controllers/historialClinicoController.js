@@ -31,6 +31,8 @@ exports.saveHistorialClinico = async (req, res) => {
     const pet = await Pet.findByPk(idPetFk);
     const user = await User.findByPk(creadoPor);
 
+    console.log("idUseuaropBack: ", user);
+
     if (!agenda || !pet || !user) {
       return res.status(404).json({
         message: "Datos de agenda, mascota o veterinario no encontrados",

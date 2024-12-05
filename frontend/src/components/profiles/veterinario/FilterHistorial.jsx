@@ -21,6 +21,8 @@ const FilterHistorial = () => {
     error: errorHistorial,
   } = useSelector((state) => state.historial);
 
+  console.log("este es el historial ", historial);
+
   // Actualizar la lista de mascotas al cambiar el documento
   const handleBuscarUsuario = () => {
     if (documento.trim() !== "") {
@@ -102,7 +104,7 @@ const FilterHistorial = () => {
           marginTop: "20px",
         }}
       >
-        {historial.length > 0 ? (
+        {Array.isArray(historial) && historial.length > 0 ? (
           historial.map((item) => (
             <div
               key={item.idHistorial}

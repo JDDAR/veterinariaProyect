@@ -5,9 +5,9 @@ import axiosInstance from "../../../api/axioInstance";
 import { useDispatch } from "react-redux";
 import { fetchCitas } from "../../../redux/slices/agendaSlice";
 
-const HistorialPaciente = ({ cita }) => {
+const HistorialPaciente = ({ cita, idMedico }) => {
   const dispatch = useDispatch();
-
+  console.log("id del medicoooo: ", idMedico);
   const initialValues = {
     descripcionHistorial: "",
     estadoHistorial: "Activo",
@@ -41,16 +41,16 @@ const HistorialPaciente = ({ cita }) => {
       alert("Error: No se encontraron datos de la cita.");
       return;
     }
-    console.log(cita);
+    console.log("Estas con las citas en historial ", cita);
     const datosAEnviar = {
       idAgendaFk: cita.idAgenda || "ID de agenda no disponible",
       idPetFk: cita.idPetFk || "ID de mascota no disponible",
-      creadoPor: cita.idMedicoFk || "Usuario no disponible",
+      creadoPor: idMedico || "Usuario no disponible",
       idUsuarioFk: cita.idUsuarioFk || "Dueño no disponible",
       ...values,
     };
 
-    console.log("Datos a enviar: ", datosAEnviar);
+    console.log("Datos a enviar: ", datosAEnviar.creadoPor);
     try {
       await axiosInstance.post("/api/historialClinico", datosAEnviar);
       alert("Historial y notas guardados con éxito.");
