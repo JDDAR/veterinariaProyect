@@ -1,0 +1,46 @@
+@use "../../variables" as v;
+
+.contentAgenda {
+  width: 100%;
+  h2 {
+    color: v.$color-primary;
+    margin-bottom: 25px;
+  }
+
+  &__containerCardAgenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__cardsAgenda {
+    border: 1px solid rgba(v.$color-primary, 0.5);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h5 {
+      border-bottom: 1px solid rgba(v.$color-primary, 0.5);
+    }
+  }
+  &__buttons {
+    border-top: 1px solid rgba(v.$color-primary, 0.5);
+    padding-top: 15px;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      cursor: pointer;
+      padding: 8px;
+      width: 100%;
+      background: v.$color-secondary;
+      color: v.$color-Bg;
+      border: none;
+      border-radius: 6px;
+    }
+  }
+}

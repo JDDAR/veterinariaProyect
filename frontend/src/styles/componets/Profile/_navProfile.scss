@@ -1,0 +1,20 @@
+@use "../../variables" as v;
+
+.navProfile {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin: 50px 0;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    gap: 25px;
+    li {
+      a {
+        color: v.$color-font;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ $color-primary: #113849;
 $color-secondary: #d87744;
 $color-Bg: #f2f2f2;
 $color-font: #212529;
+$color-font-light: rgba($color-primary, 0.8);
 $color-Bg-secondary: #626263;
 $color-error: #e63946;
 $background-image: linear-gradient(
@@ -20,4 +21,8 @@ $color-shadow:
 .container {
   width: 90%;
   margin: auto;
+}
+body {
+  background-color: $color-Bg;
+  color: $color-font;
 }

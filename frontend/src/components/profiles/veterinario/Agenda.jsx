@@ -59,20 +59,12 @@ const Agenda = () => {
   }
 
   return (
-    <div>
+    <div className="contentAgenda">
       <h2>Mi Agenda</h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+      <div className="contentAgenda__containerCardAgenda">
         {citas.length > 0 ? (
           citas.map((cita) => (
-            <div
-              key={cita.id}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "1rem",
-                width: "300px",
-              }}
-            >
+            <div key={cita.id} className="contentAgenda__cardsAgenda">
               <h5>
                 Fecha: {cita.fecha} | Hora: {cita.horaInicio} - {cita.horaFin}
               </h5>
@@ -86,7 +78,7 @@ const Agenda = () => {
               <p>
                 <strong>Estado:</strong> {cita.estadoAgenda}
               </p>
-              <div>
+              <div className="contentAgenda__buttons">
                 {role === "veterinario" && (
                   <>
                     <button onClick={() => handleEditCita(cita)}>Editar</button>

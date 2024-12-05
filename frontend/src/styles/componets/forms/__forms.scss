@@ -67,3 +67,64 @@
     border-radius: 3px;
   }
 }
+
+.formPrimary {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    border-bottom: 1px solid rgba(v.$color-secondary, 0.5);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+  }
+
+  .containerInput {
+    display: flex;
+    gap: 25px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  label {
+    font-size: 0.8rem;
+  }
+
+  button {
+    margin: auto;
+    width: 100%;
+    padding: 15px;
+    background: v.$color-secondary;
+    color: v.$color-Bg;
+    border: none;
+    border-radius: 6px;
+  }
+  fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  select,
+  input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: rgba(v.$color-Bg-secondary, 0.2);
+    border-radius: 6px;
+  }
+  .errorInput {
+    color: v.$color-Bg;
+    background-color: v.$color-error;
+    position: absolute;
+    padding: 5px;
+    right: 0;
+    top: 0;
+    border-radius: 3px;
+  }
+}

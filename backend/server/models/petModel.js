@@ -5,7 +5,7 @@ class Pet extends Model {}
 
 Pet.init(
   {
-    id: {
+    idPet: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,

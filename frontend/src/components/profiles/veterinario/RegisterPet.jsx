@@ -32,8 +32,8 @@ const RegisterPet = ({ clientId }) => {
 
   return (
     <>
-      <h4>Registrar Mascota</h4>
-      <div className="FormRegisterPet">
+      <div className="FormRegisterPet formPrimary">
+        <h4>Registrar Mascota</h4>
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}

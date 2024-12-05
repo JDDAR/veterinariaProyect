@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import logoHeader from "../../img/logo-dark.png";
 
 const HeaderNav = ({ nombre }) => {
@@ -7,7 +8,7 @@ const HeaderNav = ({ nombre }) => {
       <div className="containerHeader">
         <div className="container HeaderNav">
           <figure className="HeaderNav__logoContainer">
-            <img src={logoHeader} alt="Logo" />
+            <NavLink to="/" /> <img src={logoHeader} alt="Logo" /> <NavLink />
           </figure>
           <nav className="HeaderNav__navcontent">
             <ul>

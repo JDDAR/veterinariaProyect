@@ -57,7 +57,7 @@ exports.createAgendamiento = async (req, res) => {
     // Validar que la mascota exista
     console.log("Buscando mascota...");
 
-    const mascota = await Pet.findOne({ where: { idPet: idPetFk } });
+    const mascota = await Pet.findOne({ where: { id: idPetFk } });
 
     if (!mascota) {
       return res.status(404).json({ error: "La mascota no es válida." });

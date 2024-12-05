@@ -56,77 +56,81 @@ const RegisterCita = ({ cliente, mascotas = [] }) => {
   };
 
   return (
-    <Formik
-      initialValues={{ ...initialValues, idUsuarioFk: cliente }}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {({ errors, touched }) => (
-        <Form>
-          {/* Esto imprimirá los errores y los campos tocados 
+    <>
+      <div className="formPrimary">
+        <Formik
+          initialValues={{ ...initialValues, idUsuarioFk: cliente }}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              {/* Esto imprimirá los errores y los campos tocados 
           {console.log("Errores:", errors)}
           {console.log("Campos tocados:", touched)}
           */}
-          <h4>Cliente: {cliente}</h4>
+              <h4>Cliente: {cliente}</h4>
 
-          <div className="form-group">
-            <label htmlFor="fecha">Fecha</label>
-            <Field type="date" name="fecha" id="fecha" />
-            <ErrorMessage name="fecha" component="div" />
-          </div>
+              <div className="form-group">
+                <label htmlFor="fecha">Fecha</label>
+                <Field type="date" name="fecha" id="fecha" />
+                <ErrorMessage name="fecha" component="div" />
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="horaInicio">Hora de Inicio</label>
-            <Field type="time" name="horaInicio" id="horaInicio" />
-            <ErrorMessage name="horaInicio" component="div" />
-          </div>
+              <div className="form-group">
+                <label htmlFor="horaInicio">Hora de Inicio</label>
+                <Field type="time" name="horaInicio" id="horaInicio" />
+                <ErrorMessage name="horaInicio" component="div" />
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="horaFin">Hora de Fin</label>
-            <Field type="time" name="horaFin" id="horaFin" />
-            <ErrorMessage name="horaFin" component="div" />
-          </div>
+              <div className="form-group">
+                <label htmlFor="horaFin">Hora de Fin</label>
+                <Field type="time" name="horaFin" id="horaFin" />
+                <ErrorMessage name="horaFin" component="div" />
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="idMedicoFk">Médico Disponible</label>
-            <Field as="select" name="idMedicoFk" id="idMedicoFk">
-              <option value="">Seleccione un médico</option>
-              {veterinarios.map((vet) => (
-                <option key={vet.id} value={vet.id}>
-                  {vet.nameUser}
-                </option>
-              ))}
-            </Field>
-            <ErrorMessage name="idMedicoFk" component="div" />
-          </div>
+              <div className="form-group">
+                <label htmlFor="idMedicoFk">Médico Disponible</label>
+                <Field as="select" name="idMedicoFk" id="idMedicoFk">
+                  <option value="">Seleccione un médico</option>
+                  {veterinarios.map((vet) => (
+                    <option key={vet.id} value={vet.id}>
+                      {vet.nameUser}
+                    </option>
+                  ))}
+                </Field>
+                <ErrorMessage name="idMedicoFk" component="div" />
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="idPetFk">Seleccionar Mascota</label>
-            <Field as="select" name="idPetFk" id="idPetFk">
-              <option value="">Seleccione una mascota</option>
-              {mascotas.map((mascota) => (
-                <option key={mascota.idPet} value={mascota.idPet}>
-                  {mascota.namePet}
-                </option>
-              ))}
-            </Field>
-            <ErrorMessage name="idPetFk" component="div" />
-          </div>
+              <div className="form-group">
+                <label htmlFor="idPetFk">Seleccionar Mascota</label>
+                <Field as="select" name="idPetFk" id="idPetFk">
+                  <option value="">Seleccione una mascota</option>
+                  {mascotas.map((mascota) => (
+                    <option key={mascota.idPet} value={mascota.idPet}>
+                      {mascota.namePet}
+                    </option>
+                  ))}
+                </Field>
+                <ErrorMessage name="idPetFk" component="div" />
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="estadoAgenda">Estado de la Cita</label>
-            <Field as="select" name="estadoAgenda" id="estadoAgenda">
-              <option value="">Seleccione un estado</option>
-              <option value="activo">Activo</option>
-              <option value="cancelado">Cancelado</option>
-            </Field>
-            <ErrorMessage name="estadoAgenda" component="div" />
-          </div>
+              <div className="form-group">
+                <label htmlFor="estadoAgenda">Estado de la Cita</label>
+                <Field as="select" name="estadoAgenda" id="estadoAgenda">
+                  <option value="">Seleccione un estado</option>
+                  <option value="activo">Activo</option>
+                  <option value="cancelado">Cancelado</option>
+                </Field>
+                <ErrorMessage name="estadoAgenda" component="div" />
+              </div>
 
-          <button type="submit">Asignar Cita</button>
-        </Form>
-      )}
-    </Formik>
+              <button type="submit">Asignar Cita</button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </>
   );
 };
 
