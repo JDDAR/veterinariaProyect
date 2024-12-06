@@ -43,5 +43,11 @@
   },
   "devDependencies": {
     "sass": "^1.81.1"
-  }
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ]
 }
