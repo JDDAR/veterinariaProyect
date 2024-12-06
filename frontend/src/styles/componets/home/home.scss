@@ -21,7 +21,14 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
+    width: 100%;
     gap: 25px;
+    background: rgba(v.$color-Bg, 0.22);
+    border-radius: 16px;
+    backdrop-filter: blur(2.1px);
+    -webkit-backdrop-filter: blur(2.1px);
+    border: 1px solid rgba(v.$color-Bg, 0.3);
+    padding: 25px;
     h2 {
       font-size: 7rem;
     }
