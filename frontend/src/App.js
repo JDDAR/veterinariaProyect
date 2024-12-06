@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import FormUpdatePassword from "./components/login/FormUpdatePassword";
 import Modal from "./components/modals/Modal";
 import VeterinarioProfile from "./pages/Profiles/veterinarioProfile";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           {/* Fin de rutas para login */}
         </Routes>
       </BrowserRouter>
+      <Footer />
     </>
   );
 }

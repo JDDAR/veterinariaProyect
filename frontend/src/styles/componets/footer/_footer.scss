@@ -1,0 +1,15 @@
+@use "../../variables" as v;
+
+.containerFooter {
+  width: 100%;
+  top: 0;
+
+  &__content {
+    width: 100%;
+    background: v.$color-primary;
+    height: 10vh;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+  }
+}
