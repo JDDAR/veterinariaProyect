@@ -58,47 +58,44 @@ const FilterClientes = () => {
   };
 
   return (
-    <div>
+    <div className="containerFilterUser">
       <h4>Buscar Cliente</h4>
       <input
         type="text"
         placeholder="Buscar por número de documento"
         value={documento}
         onChange={handleSearchChange}
+        className="inputSearch"
       />
 
       {loading && <p>Cargando...</p>}
       {error && <p>Error: {error}</p>}
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+      <div className="containerFilterUser__containerCards">
         {cliente.length > 0 ? (
           cliente.map((c) => (
-            <div
-              key={c.id}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "1rem",
-                width: "300px",
-              }}
-            >
+            <div key={c.id} className="containerFilterUser__cards">
               <h5>
                 {c.nameUser} {c.lastNameUser}
               </h5>
-              <p>
-                <strong>Estado:</strong> {c.estadoUser}
-              </p>
-              <p>
-                <strong>Correo:</strong> {c.email}
-              </p>
-              <p>
-                <strong>Documento:</strong> {c.numberDocumento}
-              </p>
-              <div>
-                <button onClick={() => handleButonPet(c.id)}>
-                  Asignar Mascota
-                </button>
-                <button onClick={() => handleNewCita(c.id)}>Cita nueva</button>
+              <div className="containerFilterUser__cards__content">
+                <p>
+                  <strong>Estado:</strong> {c.estadoUser}
+                </p>
+                <p>
+                  <strong>Correo:</strong> {c.email}
+                </p>
+                <p>
+                  <strong>Documento:</strong> {c.numberDocumento}
+                </p>
+                <div className="containerFilterUser__cards__button">
+                  <button onClick={() => handleButonPet(c.id)}>
+                    Asignar Mascota
+                  </button>
+                  <button onClick={() => handleNewCita(c.id)}>
+                    Cita nueva
+                  </button>
+                </div>
               </div>
             </div>
           ))

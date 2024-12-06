@@ -4,7 +4,12 @@ $color-Bg: #f2f2f2;
 $color-font: #212529;
 $color-font-light: rgba($color-primary, 0.8);
 $color-Bg-secondary: #626263;
-$color-error: #e63946;
+$color-error: #f52f57;
+$background-color-gradient-1: linear-gradient(
+  to right,
+  $color-secondary,
+  #67a8c4
+);
 $background-image: linear-gradient(
   to right,
   #113849,

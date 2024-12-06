@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdminProfile from "./components/profiles/AdminProfile";
+import AdminProfile from "./pages/Profiles/AdminProfile";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";

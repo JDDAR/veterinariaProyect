@@ -1,0 +1,14 @@
+@use "../../variables" as v;
+
+.formCreateUsuario {
+  border: 1px solid rgba(v.$color-secondary, 0.5);
+  width: 30%;
+  padding: 25px;
+  border-radius: 12px;
+  h4 {
+    font-size: 1.5rem;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(v.$color-secondary, 0.5);
+  }
+}

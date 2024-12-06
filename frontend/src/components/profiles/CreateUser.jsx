@@ -21,7 +21,7 @@ const CreateUser = () => {
   const onSubmit = async (values, { resetForm }) => {
     try {
       console.log("TOOKEN....", tokenUser);
-      const response = await axiosInstance.post("/api/createUser", values);
+      const response = await axiosInstance.post("/api/registerUser", values);
       console.log("Usuario Creado Exitosamente ", response.data);
       alert("Usuario creado con éxito");
       resetForm();

@@ -13,7 +13,7 @@ User.init(
     },
     tipoDocumento: { type: DataTypes.STRING(20), allowNull: false },
     numberDocumento: { type: DataTypes.INTEGER, allowNull: false },
-    nameUser: { type: DataTypes.STRING(20), allowNull: false },
+    nameUser: { type: DataTypes.STRING(50), allowNull: false },
     lastNameUser: { type: DataTypes.STRING(20), allowNull: false },
     addressUser: { type: DataTypes.STRING(20), allowNull: false },
     telUser: { type: DataTypes.STRING(20), allowNull: false },

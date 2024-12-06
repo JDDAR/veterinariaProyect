@@ -63,89 +63,108 @@ const HistorialPaciente = ({ cita, idMedico }) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {({ values }) => (
-        <Form>
-          <h3>
-            Cliente: {cita?.usuario?.nameUser} {cita?.usuario?.lastNameUser}
-          </h3>
-          <p>
-            Mascota: {cita?.mascota?.namePet} - {cita?.mascota?.especie}
-          </p>
+    <>
+      <div className="formPrimary">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {({ values }) => (
+            <Form>
+              <div className="formPrimary__headerForms">
+                <h3>
+                  Cliente: {cita?.usuario?.nameUser}{" "}
+                  {cita?.usuario?.lastNameUser}
+                </h3>
+                <p>
+                  Mascota: {cita?.mascota?.namePet} - {cita?.mascota?.especie}
+                </p>
+              </div>
 
-          <div className="form-group">
-            <label>Descripción General de la Consulta</label>
-            <Field
-              as="textarea"
-              name="descripcionHistorial"
-              placeholder="Describe la consulta general"
-            />
-            <ErrorMessage name="descripcionHistorial" component="div" />
-          </div>
+              <fieldset>
+                <label>Descripción General de la Consulta</label>
+                <Field
+                  as="textarea"
+                  name="descripcionHistorial"
+                  placeholder="Describe la consulta general"
+                />
+                <ErrorMessage
+                  name="descripcionHistorial"
+                  component="div"
+                  className="errorInput"
+                />
+              </fieldset>
 
-          <div className="form-group">
-            <label>Estado</label>
-            <Field as="select" name="estadoHistorial">
-              <option value="Activo">Activo</option>
-              <option value="Inactivo">Inactivo</option>
-            </Field>
-            <ErrorMessage name="estadoHistorial" component="div" />
-          </div>
+              <fieldset>
+                <label>Estado</label>
+                <Field as="select" name="estadoHistorial">
+                  <option value="Activo">Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+                </Field>
+                <ErrorMessage
+                  name="estadoHistorial"
+                  component="div"
+                  className="errorInput"
+                />
+              </fieldset>
 
-          <div>
-            <h4>Notas</h4>
-            <FieldArray name="notas">
-              {({ remove, push }) => (
-                <div>
-                  {values.notas.map((nota, index) => (
-                    <div key={index}>
-                      <label>Título de la Nota</label>
-                      <Field
-                        name={`notas[${index}].tituloNota`}
-                        placeholder="Título de la nota"
-                      />
-                      <ErrorMessage
-                        name={`notas[${index}].tituloNota`}
-                        component="div"
-                      />
+              <div>
+                <h4>Notas</h4>
+                <FieldArray name="notas">
+                  {({ remove, push }) => (
+                    <div className="formPrimary__containerNotas">
+                      {values.notas.map((nota, index) => (
+                        <div
+                          key={index}
+                          className="formPrimary__containerNotas__notas"
+                        >
+                          <label>Título de la Nota</label>
+                          <Field
+                            name={`notas[${index}].tituloNota`}
+                            placeholder="Título de la nota"
+                          />
+                          <ErrorMessage
+                            name={`notas[${index}].tituloNota`}
+                            component="div"
+                            className="errorInput"
+                          />
 
-                      <label>Descripción de la Nota</label>
-                      <Field
-                        as="textarea"
-                        name={`notas[${index}].descripcionNota`}
-                        placeholder="Descripción de la nota"
-                      />
-                      <ErrorMessage
-                        name={`notas[${index}].descripcionNota`}
-                        component="div"
-                      />
-
-                      <button type="button" onClick={() => remove(index)}>
-                        Eliminar Nota
+                          <label>Descripción de la Nota</label>
+                          <Field
+                            as="textarea"
+                            name={`notas[${index}].descripcionNota`}
+                            placeholder="Descripción de la nota"
+                          />
+                          <ErrorMessage
+                            name={`notas[${index}].descripcionNota`}
+                            component="div"
+                            className="errorInput"
+                          />
+                          <button type="button" onClick={() => remove(index)}>
+                            Eliminar Nota
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() =>
+                          push({ tituloNota: "", descripcionNota: "" })
+                        }
+                      >
+                        Agregar Nota
                       </button>
                     </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      push({ tituloNota: "", descripcionNota: "" })
-                    }
-                  >
-                    Agregar Nota
-                  </button>
-                </div>
-              )}
-            </FieldArray>
-          </div>
+                  )}
+                </FieldArray>
+              </div>
 
-          <button type="submit">Guardar Historial</button>
-        </Form>
-      )}
-    </Formik>
+              <button type="submit">Guardar Historial</button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </>
   );
 };
 

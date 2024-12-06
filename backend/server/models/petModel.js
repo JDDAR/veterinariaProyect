@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require("sequelize");
 const { sequelize } = require("../config/database");
+const User = require("./userModel");
 
 class Pet extends Model {}
 
@@ -24,19 +25,35 @@ Pet.init(
     },
     idUserFk: {
       type: DataTypes.UUID,
-      allowNull: false,
-    }, // Relación con la tabla User
+      allowNull: true,
+    },
     idEspeFk: {
       type: DataTypes.UUID,
       allowNull: true,
-    }, // Relación con especialidad
+    },
   },
   {
     sequelize,
     modelName: "Pet",
-    tableName: "Mascota", // Nombre de la tabla en la base de datos
+    tableName: "Mascota",
     timestamps: true,
   },
 );
+Pet.belongsTo(User, {
+  foreignKey: "idUserFk",
+  onDelete: "SET NULL",
+  onUpdate: "CASCADE",
+});
 
 module.exports = Pet;
+
+// Archivo server.js
+sequelize
+  .authenticate()
+  .then(() => console.log("Conexión exitosa"))
+  .catch((err) => console.error("Error al conectar:", err));
+
+sequelize
+  .sync({ alter: true })
+  .then(() => console.log("Base de datos sincronizada"))
+  .catch((err) => console.error("Error al sincronizar:", err));

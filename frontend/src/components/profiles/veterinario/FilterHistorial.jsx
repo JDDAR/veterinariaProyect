@@ -64,16 +64,16 @@ const FilterHistorial = () => {
   };
 
   return (
-    <div>
+    <div className="containerHistorial">
       <h4>Buscar Historial</h4>
-
       {/* Input y botón de búsqueda */}
-      <div>
+      <div className="containerHistorial__inputSearch">
         <input
           type="text"
           placeholder="Buscar por número de documento"
           value={documento}
           onChange={handleDocumentoChange}
+          className="inputSearch"
         />
         <button onClick={handleBuscarUsuario}>Buscar</button>
       </div>
@@ -87,7 +87,7 @@ const FilterHistorial = () => {
 
       {/* Mostrar select de mascotas si existen */}
       {mascotas.length > 0 && (
-        <div>
+        <div className="containerHistorial__inputPet">
           <label htmlFor="mascotas">Selecciona una mascota:</label>
           <select
             id="mascotas"
@@ -108,7 +108,6 @@ const FilterHistorial = () => {
 
       {/* Mostrar el estado de carga o error del historial */}
       {loadingHistorial && <p>Cargando historial...</p>}
-      {errorHistorial && <p>Error al cargar historial: {errorHistorial}</p>}
 
       {/* Mostrar historial de la mascota seleccionada */}
       <div
