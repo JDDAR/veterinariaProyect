@@ -23,7 +23,8 @@ exports.obtenerVeterinarios = async (req, res) => {
 };
 
 // Crear agendamiento
-const {
+exports.createAgendamiento = async (req, res) => {
+  const {
     fecha,
     horaInicio,
     horaFin,
@@ -50,7 +51,39 @@ const {
     if (!veterinario) {
       return res
         .status(404)
-        .json({ error: "El médico/veterinario no e
+        .json({ error: "El médico/veterinario no es válido." });
+    }
+
+    // Validar que la mascota exista
+    console.log("Buscando mascota...");
+
+    const mascota = await Pet.findOne({ where: { idPet: idPetFk } });
+
+    if (!mascota) {
+      return res.status(404).json({ error: "La mascota no es válida." });
+    }
+
+    // Crear el agendamiento
+    const nuevoAgendamiento = await Agenda.create({
+      fecha,
+      horaInicio,
+      horaFin,
+      idMedicoFk,
+      idPetFk,
+      estadoAgenda,
+      idUsuarioFk,
+    });
+
+    res.status(201).json({
+      message: "Cita creada exitosamente",
+      agendamiento: nuevoAgendamiento,
+    });
+  } catch (error) {
+    console.error("Error al crear agendamiento: ", error);
+    res.status(500).json({ error: "Error al crear agendamiento" });
+  }
+};
+
 // Obtener agendamientos ***/// PARA ADMINISTRADOR
 exports.getAgendamientos = async (req, res) => {
   try {
@@ -73,64 +106,7 @@ exports.getAgendamientos = async (req, res) => {
 exports.obtenerCitasPorVeterinario = async (req, res) => {
   const { id } = req.params;
   console.log("IDDDDDD... ", id);
-  exports.createAgenda = async (req, res) => {
-    try {
-      const {
-        fecha,
-        horaInicio,
-        horaFin,
-        motivo,
-        duracion,
-        notaInicial,
-        estadoAgenda,
-        idUsuarioFk,
-        idPetFk,
-      } = req.body;
 
-      // Validar datos obligatorios
-      if (!fecha || !horaInicio || !horaFin || !idUsuarioFk || !idPetFk) {
-        return res.status(400).json({
-          error:
-            "Los campos fecha, horaInicio, horaFin, idUsuarioFk e idPetFk son obligatorios.",
-        });
-      }
-
-      // Verificar que el usuario existe
-      const usuario = await User.findByPk(idUsuarioFk);
-      if (!usuario) {
-        return res.status(404).json({ error: "Usuario no encontrado." });
-      }
-
-      // Verificar que la mascota existe
-      const mascota = await Pet.findByPk(idPetFk);
-      if (!mascota) {
-        return res.status(404).json({ error: "Mascota no encontrada." });
-      }
-
-      // Crear la cita en la agenda
-      const nuevaAgenda = await Agenda.create({
-        fecha,
-        horaInicio,
-        horaFin,
-        motivo,
-        duracion,
-        notaInicial,
-        estadoAgenda,
-        idUsuarioFk,
-        idPetFk,
-      });
-
-      res.status(201).json({
-        message: "Cita creada con éxito.",
-        data: nuevaAgenda,
-      });
-    } catch (error) {
-      console.error("Error al crear la agenda:", error);
-      res.status(500).json({
-        error: "Ocurrió un error al crear la agenda.",
-      });
-    }
-  };
   try {
     const citas = await Agenda.findAll({
       where: { idMedicoFk: id },
