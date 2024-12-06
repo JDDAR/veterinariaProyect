@@ -167,3 +167,16 @@
   background-color: rgba(v.$color-Bg-secondary, 0.2);
   border-radius: 6px;
 }
+
+@media (max-width: 1200px) {
+  .containerForm {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .containerForm {
+    flex-direction: column;
+    width: 100%;
+  }
+}

@@ -36,3 +36,8 @@ body {
   background-color: $color-Bg;
   color: $color-primary;
 }
+@media (max-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+}
