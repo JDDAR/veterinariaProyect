@@ -9,15 +9,18 @@ const HeaderNav = ({ nombre }) => {
         <div className="container HeaderNav">
           <figure className="HeaderNav__logoContainer">
             <NavLink to="/" /> <img src={logoHeader} alt="Logo" /> <NavLink />
+            <NavLink to="/">Clauw Guardians</NavLink>
           </figure>
           <nav className="HeaderNav__navcontent">
             <ul>
-              <li>Nosotros </li>
-              <li>mas</li>
+              <li>Nosotros</li>
+              <li></li>
             </ul>
           </nav>
           <div className="HeaderNav__buttonHeader">
-            <button className="buton-primary"> Iniciar sesión</button>
+            <NavLink to="/login" className="buton-primary">
+              Iniciar sesión
+            </NavLink>
           </div>
         </div>
       </div>

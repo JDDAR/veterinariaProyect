@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$font-family: "Poppins", serif;
+
 $color-primary: #113849;
 $color-secondary: #d87744;
 $color-Bg: #f2f2f2;
 $color-font: #212529;
 $color-font-light: rgba($color-primary, 0.8);
 $color-Bg-secondary: #626263;
-$color-error: #f52f57;
+$color-error: rgba($color-secondary, 0.9);
 $background-color-gradient-1: linear-gradient(
   to right,
   $color-secondary,
@@ -28,6 +32,7 @@ $color-shadow:
   margin: auto;
 }
 body {
+  font-family: $font-family;
   background-color: $color-Bg;
   color: $color-font;
 }
