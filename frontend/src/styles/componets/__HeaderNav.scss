@@ -38,12 +38,15 @@
     }
   }
   &__buttonHeader {
-    button {
-      padding: 8px;
+    a {
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 8px 20px;
       border-radius: 6px;
       background: v.$color-primary;
       color: v.$color-Bg;
       border: none;
+      font-weight: 400;
     }
   }
 }
